@@ -1,0 +1,74 @@
+---
+layout: post
+title:  "Have your own Ansible Galaxy"
+date:   2017-09-22 10:44:35 +0800
+categories: Ansible galaxy
+---
+I have been writing ansible playbooks for different projects and found a way to reuse them for any project. This something like having your own mini Ansible Galaxy (Repository). 
+
+This is a two step process. First one to create  repository and next is to use it.
+
+Setup Repository:
+
+{% highlight text %}
+1. create a github repository (e.g ansible-repository)
+2. create roles folder 
+3. From inside roles folder run "ansible-galaxy init <rolename>" command to create a role. This will create a role
+4. write your ansible role
+{% endhighlight %}
+
+You can find the example: [ansible repository][ansible-repository]
+
+Use these roles:
+
+In the original playbook use these roles by simply creating a requirements.yml file and running ansible-galaxy install as shown in the below example
+
+original playbook tree
+
+{% highlight bash %}
+$ tree .
+.
+├── inventory
+│   └── dev
+├── playbook.yml
+├── requirements.yml
+└── roles
+    └── README.md
+{% endhighlight %}
+
+requirements.yml file
+
+{% highlight bash %}
+$ cat requirements.yml 
+- name: palo-ping
+  src: https://github.com/paloitsingapore/ansible-repository
+  version: master
+{% endhighlight %}
+
+main playbook calling the role
+
+{% highlight bash %}
+$ cat playbook.yml 
+---
+# test roles
+
+- name: deploy acuo docker compose
+  hosts: all
+  roles:
+    - palo-ping
+{% endhighlight %}
+
+install the role
+
+{% highlight bash %}
+$ ansible-role-check ansible-galaxy install -r requirements.yml -p roles 
+- extracting echo to roles/palo-ping
+- palo-ping (master) was installed successfully
+{% endhighlight %}
+
+run your playbook
+{% highlight bash %}
+$ ansible-role-check ansible-playbook -i inventory/dev playbook.yml   
+{% endhighlight %}
+
+[ansible-repository]: https://github.com/paloitsingapore/ansible-repository
