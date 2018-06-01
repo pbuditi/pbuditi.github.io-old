@@ -4,32 +4,40 @@ title:  "Linux Kernel and OS Overview (Draft)"
 date:   2017-10-15 10:44:35 +0800
 categories: Linux Kernel
 ---
-The operating system is considered the parts of the system responsible for basic use and administration. This includes the kernel and device drivers, boot loader, command shell or other user interface, and basic file and system utilities. It is the stuff you need—not a web browser or music players. The term system, in turn, refers to the operating system and all the applications running on top of it.
+The operating system is considered the parts of the system responsible for basic use and administration. This includes 
+ -  kernel 
+ -  device drivers
+ -  boot loader
+ -  command shell or other user interface,
+ -   basic file and system utilities. 
 
-The outermost part of the OS is the user interface called the Shell.
-The innermost part is ofcourse Kernel.
+The outermost part of the OS is the user interface or command Shell. The innermost part is of course Kernel.
 
-components of a kernel:
+Components of a kernel:
 
 Typical components of a kernel are 
    - interrupt handlers to service interrupt requests
    - scheduler to share processor time among multiple processes
    - memory management system to manage process address spaces
-   -  system services such as networking and interprocess communication
+   - system services such as networking and interprocess communication
 
 Memory managment - Space
+ 
  The system memory has a start and end address. The memory is shared by Kernel and user applications. 
 
   - Kernel space: os protected memory space reserved only for  Kernel. Kernel usually resides in elivated system state with full access to hardware. This is called kernel-pace. 
   - User space: User applications execute in user-space see a subset of the machine’s available resources and can perform certain system functions.
 
-System Calls:
+System Calls
+
 Applications running on OS communicate with the kernel via system calls. An application typically calls functions in a library—for example, the C library—that in turn rely on the system call interface to instruct the kernel to carry out tasks on the application’s behalf.
 
-Interrupts: 
+Interrupts
+
 When hardware wants to communicate with the system, it issues an interrupt that literally interrupts the processor, which in turn interrupts the kernel. A number identifies interrupts and the kernel uses this number to execute a specific interrupt handler to process and respond to the interrupt
 
-Context:
+Process Context
+
 Each process on the system doing either of the following three things  
    - In user-space, executing user code in a process
    - In kernel-space, in process context, executing on behalf of a specific process

@@ -1,0 +1,17 @@
+---
+layout: post
+title:  "OpenStack for enterprises - challenges and solution (Draft)"
+date:   2018-06-01 18:44:35 +0800
+categories: OpenStack, Ansible, Docker, Ceph, OpenVSwitch
+---
+
+Introduction
+
+
+Challenges
+
+- Complex deployment  
+- Lack of experties 
+- Reliability
+- Cost Management
+

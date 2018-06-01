@@ -1,0 +1,24 @@
+---
+layout: post
+title:  "Portworx - backend storage for Kubernetes"
+date:   2018-01-19 10:44:35 +0800
+categories: Kubernetes
+---
+
+Ensure /etc/pwx folder has all required certificates of etcd. This can be found from /etc/etcd.env file. Copy the ca cert, cert and key file from /etc/ssl/etcd to /etc/pwx.
+
+```
+$cat /etc/etvd.env
+ETCD_TRUSTED_CA_FILE=/etc/ssl/etcd/ssl/ca.pem
+ETCD_CERT_FILE=/etc/ssl/etcd/ssl/member-palodev-kube-1.pem
+ETCD_KEY_FILE=/etc/ssl/etcd/ssl/member-palodev-kube-1-key.pem
+....
+
+
+```
+
+```
+kubectl apply -f 'http://install.portworx.com/?type=dock&c=cluster.local&k=etcd:https://192.168.0.94:2379&s=/dev/vdb&kbver=1.9.0+coreos.0&mas=true&ca=/etc/pwx/ca.pem&cert=/etc/pwx/node.pem&key=/etc/pwx/node-key.pem'
+
+```
+ - 
