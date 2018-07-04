@@ -5,38 +5,45 @@ date:   2018-07-07 18:44:35 +0800
 categories: Docker, Kubernetes, Containers
 ---
 
-Docker Containers Platform
+*Docker Containers Platform*
 
 Docker is a proven solution to build, ship and run applications to production at speed. Docker gives the platform to build applications along with all application dependencies integrated and encapsulated together inside a docker image that can be shipped into any environment. It is guaranteed to behave exactly the same way across any platform and environment contributing towards the immutable infrastructure.  Docker gives the ability for developers to run production like environment on their local desktops. An orchestration layer on top of Docker is a preferred way for production to have high availability and fault tolerance.
 
 Docker contributes not only provides faster DevOps cycle but also helps teams better focus by segregating responsibilities. Developers are concerned about what is inside docker such as the code and libraries while operations concerned about what is outside docker such as logging, remote access etc.
 
-Strategy for On-boarding
+*Strategy for On-boarding*
 
 Onboarding docker on enterprise level can be challenging especially in a traditional environment where the knowledge and skill set is still not mature. However, we take a step towards the change by the way of pilots. Identify a small team/s or a project that is thriving for transformation or a start-up and introduce docker. Teams can quickly see the benefits and set a stage for the organization.
 
 Here are the few things to consider during onboarding:
 
 -   1. Desktops with Docker
+    
     Enable developers to run docker on their desktops. Although this might seem very easy, but this can be a challenging exercise for enterprises that has network and security restrictions on the developers’ desktops. However, developer is the first person who can get the benefit from docker by running the entire suite of application with all dependencies on the desktop. This gives the ability to write better code and test faster.
     Windows 2010 pro 64-bit desktops or Mac 10.11 is suitable to run docker.  Although windows 2007 can be installed with legacy version of docker which runs a boot2docker virtual machine of the desktop. However, the deployment can be error prone and tedious. Hence docker.io recommends using Windows 2010 with latest version of Docker. Docker runs on Mac seamlessly as it is a UNIX based OS.
 
 -   2. Shared Docker Registry
+    
     Having Docker registry can be a way for sharing containers between developers and environments. Developers or CI Tools can build docker images for every commit and push the images to a centralized location called docker registry.  Enterprises can leverage of their current Artifact Repository solutions such as “Nexus” or “JFrog Artifactory” to host docker registry. Docker registry can be also deployed on as a standalone application or as docker container with persistent storage.  
 
 -   3. Development Sandboxes on Docker
+    
     Development sandboxes are often the busiest boxes as the developers commit and deploy code rapidly. This is the best candidate to take advantage of docker. Having docker installed on developer sandboxes and running the entire suite of application is fastest way for adoption. Docker gives ability to run isolated environments for the same application in a sandbox by the way of docker-compose. Docker-compose is simple YAML that defines how multiple application tiers (example web, application and DB) network together to serve a single instance.
 
 -   4. Orchestration for Production
+    
     Running docker on production require other considerations as the same application instance can be running on multiple servers. A Docker orchestration is required to manage this. Orchestration also takes care of Load balancing and High Availability. Docker Swarm is the native orchestrator for docker that supports production grade clusters.  However there other orchestrations worth considering which are feature rich such as Kubernetes, OpenShift and DO/OS.
 
 -   5. Security Considerations
+    
     Ops teams are usually sceptical about docker since they might not have visibility on what is inside docker images. However, docker gives the ability to scan the entire image.  Docker Enterprise version comes with the security scanning features. In addition, there are Open Source tools (e.g. coreos/clair) that can do this job as well.
     Docker Hub also provides official base images that are built with security standards that can be used. Optionally Ops can build custom base images that can meet security standards and ship to docker registry so that they can be used by the developers.
 
 -   6. Monitoring and Logging
+    
     Ops teams usually busy in diagnosing production issues. They usually depend upon logging and monitoring tools for the investigation of issues. Docker has native CLI tools for this purpose such as “docker logs” to check application logs and “docker stats” to check the resource usage. Although, this might not be just enough for production monitoring, there are other opensource tools such as EFK (Elastic, Fluentd, Kibana), Sysdig and etc. that can give an enterprise monitoring solution for Docker based systems.
 
 -   7. Enterprise Build Platform
+    
     With docker enterprises can build and platform at scale to run the application workloads. Having a cluster of machines with docker with any orchestration tools such as (docker swarm, Kubernetes or OpenShift) and been able to run multiple docker application on this platform can be really an achievement for the organizations. This changes the way of thinking for Ops. They focus scaling cluster VMs or bare metal for more workloads than focusing on individual VM for each project.
 
